@@ -1,52 +1,19 @@
-:root {
-  --bg-light: #fefefe;
-  --text-light: #222;
-  --box-light: #ffffff;
-  --button-light: #0077cc;
-
-  --bg-dark: #121212;
-  --text-dark: #f0f0f0;
-  --box-dark: rgba(255,255,255,0.05);
-  --button-dark: #00c6ff;
-}
-
 body {
   font-family: 'Vazirmatn', sans-serif;
-  transition: background 0.5s ease, color 0.5s ease;
-  padding: 20px;
+  background: linear-gradient(to right, #2c3e50, #3498db);
+  color: white;
   text-align: center;
-}
-
-body.light {
-  background-color: var(--bg-light);
-  color: var(--text-light);
-}
-
-body.dark {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
-}
-
-.theme-toggle {
-  text-align: right;
-  margin-bottom: 10px;
+  padding: 20px;
 }
 
 .container {
+  background-color: rgba(255,255,255,0.1);
   padding: 30px;
   border-radius: 15px;
   max-width: 700px;
   margin: auto;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  transition: background 0.5s ease, color 0.5s ease;
-}
-
-body.light .container {
-  background-color: var(--box-light);
-}
-
-body.dark .container {
-  background-color: var(--box-dark);
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  animation: slideUp 1s ease-in-out;
 }
 
 input, textarea {
@@ -59,23 +26,15 @@ input, textarea {
 }
 
 button {
-  font-size: 18px;
   padding: 12px 25px;
+  background-color: #00c6ff;
   border: none;
   border-radius: 8px;
+  color: white;
   cursor: pointer;
   transition: transform 0.2s ease;
+  font-size: 18px;
   margin: 5px;
-}
-
-body.light button {
-  background-color: var(--button-light);
-  color: white;
-}
-
-body.dark button {
-  background-color: var(--button-dark);
-  color: white;
 }
 
 button:hover {
@@ -115,7 +74,7 @@ button:hover {
   margin-top: 20px;
   white-space: pre-wrap;
   text-align: left;
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(0,0,0,0.3);
   padding: 15px;
   border-radius: 10px;
   font-size: 16px;
