@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>ویرایش کانفیگ‌های VPN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container fade-in">
     <h1>🎯 ابزار ویرایش کانفیگ VPN</h1>
+
+    <button onclick="toggleTheme()" id="themeToggle">🌙 حالت شب</button>
 
     <label for="customName">اسم دلخواه برای کانفیگ‌ها:</label>
     <input type="text" id="customName" placeholder="مثلاً Telegram:@Academi_vpn">
@@ -20,8 +23,14 @@
     <textarea id="manualInput" rows="10" placeholder="هر کانفیگ را در یک خط وارد کن..."></textarea>
     <button onclick="processManual()">پردازش دستی</button>
 
-    <div id="output" class="fade-in"></div>
-    <a id="downloadLink" style="display:none;">⬇️ دانلود فایل جدید</a>
+    <div id="loader" class="loader" style="display:none;"></div>
+
+    <div id="downloadSection" style="display:none;">
+      <button id="downloadBtn">⬇️ دانلود فایل جدید</button>
+      <button onclick="copyOutput()">📋 کپی همه کانفیگ‌ها</button>
+    </div>
+
+    <div id="output" class="outputBox fade-in"></div>
   </div>
 
   <script src="script.js"></script>
