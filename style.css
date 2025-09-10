@@ -1,29 +1,37 @@
 :root {
-  --bg-color: #f0f0f0;
-  --text-color: #222;
-  --box-color: #ffffff;
+  --bg-light: #f0f0f0;
+  --text-light: #222;
+  --bg-dark: #1e3c72;
+  --text-dark: #fff;
+  --box-light: #fff;
+  --box-dark: rgba(0,0,0,0.3);
   --button-color: #00c6ff;
 }
 
 body {
   font-family: 'Vazirmatn', sans-serif;
-  text-align: center;
-  padding: 20px;
   transition: background 0.5s ease, color 0.5s ease;
+  padding: 20px;
+  text-align: center;
 }
 
 body.light {
-  background: var(--bg-color);
-  color: var(--text-color);
+  background: var(--bg-light);
+  color: var(--text-light);
 }
 
 body.dark {
-  background: linear-gradient(to right, #1e3c72, #2a5298);
-  color: white;
+  background: linear-gradient(to right, var(--bg-dark), #2a5298);
+  color: var(--text-dark);
+}
+
+.theme-toggle {
+  text-align: right;
+  margin-bottom: 10px;
 }
 
 .container {
-  background-color: rgba(0,0,0,0.3);
+  background-color: var(--box-dark);
   padding: 30px;
   border-radius: 15px;
   max-width: 700px;
@@ -33,8 +41,8 @@ body.dark {
 }
 
 body.light .container {
-  background-color: var(--box-color);
-  color: var(--text-color);
+  background-color: var(--box-light);
+  color: var(--text-light);
 }
 
 input, textarea {
@@ -56,11 +64,6 @@ button {
   transition: transform 0.2s ease;
   font-size: 18px;
   margin: 5px;
-}
-
-body.light button {
-  background-color: #0077cc;
-  color: white;
 }
 
 button:hover {
