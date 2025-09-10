@@ -1,11 +1,13 @@
 :root {
-  --bg-light: #f0f0f0;
+  --bg-light: #fefefe;
   --text-light: #222;
-  --bg-dark: #1e3c72;
-  --text-dark: #fff;
-  --box-light: #fff;
-  --box-dark: rgba(0,0,0,0.3);
-  --button-color: #00c6ff;
+  --box-light: #ffffff;
+  --button-light: #0077cc;
+
+  --bg-dark: #121212;
+  --text-dark: #f0f0f0;
+  --box-dark: rgba(255,255,255,0.05);
+  --button-dark: #00c6ff;
 }
 
 body {
@@ -16,12 +18,12 @@ body {
 }
 
 body.light {
-  background: var(--bg-light);
+  background-color: var(--bg-light);
   color: var(--text-light);
 }
 
 body.dark {
-  background: linear-gradient(to right, var(--bg-dark), #2a5298);
+  background-color: var(--bg-dark);
   color: var(--text-dark);
 }
 
@@ -31,18 +33,20 @@ body.dark {
 }
 
 .container {
-  background-color: var(--box-dark);
   padding: 30px;
   border-radius: 15px;
   max-width: 700px;
   margin: auto;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
-  animation: slideUp 1s ease-in-out;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
 body.light .container {
   background-color: var(--box-light);
-  color: var(--text-light);
+}
+
+body.dark .container {
+  background-color: var(--box-dark);
 }
 
 input, textarea {
@@ -55,15 +59,23 @@ input, textarea {
 }
 
 button {
+  font-size: 18px;
   padding: 12px 25px;
-  background-color: var(--button-color);
   border: none;
   border-radius: 8px;
-  color: white;
   cursor: pointer;
   transition: transform 0.2s ease;
-  font-size: 18px;
   margin: 5px;
+}
+
+body.light button {
+  background-color: var(--button-light);
+  color: white;
+}
+
+body.dark button {
+  background-color: var(--button-dark);
+  color: white;
 }
 
 button:hover {
