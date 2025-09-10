@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>ویرایش کانفیگ‌های VPN</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container fade-in">
+    <h1>🎯 ابزار ویرایش کانفیگ VPN</h1>
+
+    <label for="customName">اسم دلخواه برای کانفیگ‌ها:</label>
+    <input type="text" id="customName" placeholder="مثلاً Telegram:@Academi_vpn">
+
+    <h3>📤 آپلود فایل کانفیگ‌ها</h3>
+    <input type="file" id="fileInput" accept=".txt">
+    <button onclick="processFile()">پردازش فایل</button>
+
+    <h3>✍️ وارد کردن دستی کانفیگ‌ها (حداکثر ۱۰ عدد)</h3>
+    <textarea id="manualInput" rows="10" placeholder="هر کانفیگ را در یک خط وارد کن..."></textarea>
+    <button onclick="processManual()">پردازش دستی</button>
+
+    <div id="output" class="fade-in"></div>
+    <a id="downloadLink" style="display:none;">⬇️ دانلود فایل جدید</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

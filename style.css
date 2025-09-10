@@ -1,0 +1,66 @@
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: linear-gradient(to right, #1e3c72, #2a5298);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.container {
+  background-color: rgba(0,0,0,0.3);
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 600px;
+  margin: auto;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  animation: slideUp 1s ease-in-out;
+}
+
+input, textarea {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #00c6ff;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-size: 16px;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes slideUp {
+  from {transform: translateY(30px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
+
+#output {
+  margin-top: 20px;
+  white-space: pre-wrap;
+  text-align: left;
+  background-color: rgba(255,255,255,0.1);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
