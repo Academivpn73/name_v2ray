@@ -26,7 +26,6 @@ function processFile() {
   reader.onload = function(e) {
     const lines = e.target.result.split('\n').map(l => l.trim()).filter(l => l);
     const updated = renameConfigs(lines);
-    showOutput(updated);
     createDownload(updated);
   };
   reader.readAsText(file);
@@ -39,21 +38,17 @@ function processManual() {
   if (lines.length > 10) return alert("حداکثر ۱۰ کانفیگ دستی مجاز است!");
 
   const updated = renameConfigs(lines);
-  showOutput(updated);
   createDownload(updated);
-}
-
-function showOutput(lines) {
-  const outputDiv = document.getElementById('output');
-  outputDiv.innerText = lines.join('\n');
 }
 
 function createDownload(lines) {
   const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
   const url = URL.createObjectURL(blob);
-  const link = document.getElementById('downloadLink');
+
+  const link = document.createElement('a');
   link.href = url;
   link.download = 'updated_configs.txt';
-  link.style.display = 'inline';
-  link.textContent = '⬇️ دانلود فایل جدید';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
