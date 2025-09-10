@@ -94,4 +94,6 @@ function toggleTheme() {
   } else {
     body.classList.remove('light');
     body.classList.add('dark');
-    toggleBtn.textContent = '
+    toggleBtn.textContent = '☀️ حالت روز';
+  }
+}
