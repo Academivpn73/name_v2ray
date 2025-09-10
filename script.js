@@ -83,17 +83,3 @@ function showOutput(lines) {
   const outputDiv = document.getElementById('output');
   outputDiv.innerText = lines.join('\n');
 }
-
-function toggleTheme() {
-  const body = document.body;
-  const toggleBtn = document.getElementById('themeToggle');
-  if (body.classList.contains('dark')) {
-    body.classList.remove('dark');
-    body.classList.add('light');
-    toggleBtn.textContent = '🌙 حالت شب';
-  } else {
-    body.classList.remove('light');
-    body.classList.add('dark');
-    toggleBtn.textContent = '☀️ حالت روز';
-  }
-}
