@@ -21,11 +21,7 @@ function showLoading(show) {
   document.getElementById('loader').style.display = show ? 'block' : 'none';
 }
 
-function showDownloadSection(show) {
-  document.getElementById('downloadSection').style.display = show ? 'block' : 'none';
-}
-
-function processFile() {
+async function processFile() {
   const fileInput = document.getElementById('fileInput');
   const file = fileInput.files[0];
   if (!file) return alert("فایلی انتخاب نشده!");
@@ -33,13 +29,37 @@ function processFile() {
   showLoading(true);
 
   const reader = new FileReader();
-  reader.onload = function(e) {
+  reader.onload = async function(e) {
     const lines = e.target.result.split('\n').map(l => l.trim()).filter(l => l);
     const updated = renameConfigs(lines);
-    showOutput(updated);
-    prepareDownload(updated);
     showLoading(false);
-    showDownloadSection(true);
+
+    if (window.showSaveFilePicker) {
+      try {
+        const handle = await window.showSaveFilePicker({
+          suggestedName: 'updated_configs.txt',
+          types: [{
+            description: 'Text file',
+            accept: { 'text/plain': ['.txt'] }
+          }]
+        });
+        const writable = await handle.createWritable();
+        await writable.write(updated.join('\n'));
+        await writable.close();
+        alert("✅ فایل با موفقیت ذخیره شد!");
+      } catch (err) {
+        alert("❌ ذخیره‌سازی لغو شد یا پشتیبانی نمی‌شود.");
+      }
+    } else {
+      const blob = new Blob([updated.join('\n')], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'updated_configs.txt';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   };
   reader.readAsText(file);
 }
@@ -53,37 +73,15 @@ function processManual() {
   showLoading(true);
   const updated = renameConfigs(lines);
   showOutput(updated);
-  prepareDownload(updated);
+  navigator.clipboard.writeText(updated.join('\n')).then(() => {
+    alert("✅ کانفیگ‌ها کپی شدند!");
+  });
   showLoading(false);
-  showDownloadSection(true);
-}
-
-let downloadBlob = null;
-
-function prepareDownload(lines) {
-  downloadBlob = new Blob([lines.join('\n')], { type: 'text/plain' });
-  const downloadBtn = document.getElementById('downloadBtn');
-  downloadBtn.onclick = function() {
-    const url = URL.createObjectURL(downloadBlob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'updated_configs.txt';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 }
 
 function showOutput(lines) {
   const outputDiv = document.getElementById('output');
   outputDiv.innerText = lines.join('\n');
-}
-
-function copyOutput() {
-  const outputText = document.getElementById('output').innerText;
-  navigator.clipboard.writeText(outputText).then(() => {
-    alert("✅ همه کانفیگ‌ها کپی شد!");
-  });
 }
 
 function toggleTheme() {
@@ -96,10 +94,4 @@ function toggleTheme() {
   } else {
     body.classList.remove('light');
     body.classList.add('dark');
-    toggleBtn.textContent = '☀️ حالت روز';
-  }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.body.classList.add('dark');
-});
+    toggleBtn.textContent = '
