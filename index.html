@@ -7,10 +7,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="theme-toggle">
+    <button onclick="toggleTheme()" id="themeToggle">🌙 حالت شب</button>
+  </div>
+
   <div class="container fade-in">
     <h1>🎯 ابزار ویرایش کانفیگ VPN</h1>
-
-    <button onclick="toggleTheme()" id="themeToggle">🌙 حالت شب</button>
 
     <label for="customName">اسم دلخواه برای کانفیگ‌ها:</label>
     <input type="text" id="customName" placeholder="مثلاً Telegram:@Academi_vpn">
@@ -24,11 +26,6 @@
     <button onclick="processManual()">پردازش دستی</button>
 
     <div id="loader" class="loader" style="display:none;"></div>
-
-    <div id="downloadSection" style="display:none;">
-      <button id="downloadBtn">⬇️ دانلود فایل جدید</button>
-      <button onclick="copyOutput()">📋 کپی همه کانفیگ‌ها</button>
-    </div>
 
     <div id="output" class="outputBox fade-in"></div>
   </div>
